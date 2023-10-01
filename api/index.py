@@ -1,13 +1,11 @@
-from flask import Flask
-
-app = Flask(__name__)
+from http.server import BaseHTTPRequestHandler
 
 
-@app.route('/')
-def home():
-    return 'Hello, World!'
+class handler(BaseHTTPRequestHandler):
 
-
-@app.route('/about')
-def about():
-    return 'About'
+    def do_GET(self):
+        self.send_response(200)
+        self.send_header('Content-type', 'text/plain')
+        self.end_headers()
+        self.wfile.write(" aaaaaaaaa   ".encode())
+        return
