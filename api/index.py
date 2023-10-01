@@ -1,13 +1,12 @@
 from http.server import BaseHTTPRequestHandler
-import cgi
+from flask import Flask,request
 
 
 class handler(BaseHTTPRequestHandler):
 
 
     def do_GET(self):
-        form = cgi.FieldStorage
-        name = form.getvalue('name', '')
+        name = request.GET.get('name')
         self.send_response(200)
         self.send_header('Content-type', 'text/plain')
         self.end_headers()
